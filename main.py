@@ -69,8 +69,7 @@ def ana_ekran_ac(username, balance):
     canvas.grid(row=0, column=3, rowspan=3, padx=10, pady=10, sticky="ns")
 
     tk.Button(pencere, text = "Hisse Al", command = lambda: hisse_satin_al_ekrani(username)).grid(column =4, row = 1, columnspan = 2, padx = 10, pady = 10)
-
-
+    tk.Button(pencere, text = "Hisse Sat").grid(column = 4 , row = 2, columnspan = 2, padx = 10, pady = 10, sticky ="we")
 
     row_index = 4
 
@@ -274,8 +273,32 @@ def hesap_olustur(isim_girisi, sifre_girisi):
             messagebox.showerror("Hata", "Bu kullanıcı adı zaten var!")
         except Exception as e:
             messagebox.showerror("Veritabanı Hatası", str(e))
+def veritabani_kurulum():
+    conn = sql.connect("accounts.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users(
+            username TEXT PRIMARY KEY,
+            password INTEGER,
+            balance INTEGER)
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS portfoy(
+            username TEXT,
+            hisse_kodu TEXT,
+            adet INTEGER,
+            alim_fiyati REAL,
+            alim_tarihi TEXT)
+    """)
+
+    conn.commit()
+    conn.close()
 
 
+
+veritabani_kurulum()
 
 root = tk.Tk()
 root.title("Borsa Simülasyonu")
