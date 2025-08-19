@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 22025 Enes Can Akyazı
+Copyright (c) 2025 Enes Can Akyazı
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
